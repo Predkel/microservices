@@ -1,5 +1,6 @@
-package com.example;
+package com.example.connection;
 
+import com.example.model.Contact;
 import com.netflix.hystrix.contrib.javanica.annotation.HystrixCommand;
 import org.springframework.stereotype.Component;
 
@@ -7,7 +8,7 @@ import java.util.Collection;
 import java.util.Collections;
 
 @Component
-class IntegrationClient {
+public class IntegrationClient {
 
     private final ContactClient contactClient;
 

@@ -1,5 +1,7 @@
 package com.example;
 
+import com.example.connection.IntegrationClient;
+import com.example.model.Book;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;

@@ -1,10 +1,11 @@
-package com.example;
+package com.example.model;
 
 import java.util.Collection;
 import java.util.Collections;
 
 public class Book {
-    Collection<Contact> contacts;
+
+    private Collection<Contact> contacts;
 
     public Book() {
     }

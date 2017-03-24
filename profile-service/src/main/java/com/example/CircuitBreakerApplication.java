@@ -12,13 +12,15 @@ import org.springframework.core.env.Environment;
 @SpringBootApplication
 @EnableEurekaClient
 @EnableFeignClients
-@EnableCircuitBreaker
-@EnableZuulProxy
+@EnableCircuitBreaker //http://localhost:{PORT}/book/{id}
+@EnableZuulProxy //http://localhost:{PORT}/contact-service/contacts/
 public class CircuitBreakerApplication {
+
     @Autowired
     void setEnvironment(Environment e) {
         System.out.println(e.getProperty("configuration.projectName"));
     }
+
     public static void main(String[] args) {
         SpringApplication.run(CircuitBreakerApplication.class, args);
     }
