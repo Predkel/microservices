@@ -9,12 +9,12 @@ import org.springframework.web.bind.annotation.RestController;
 @RefreshScope
 public class ProjectNameRestController {
 
-	@Value("${configuration.projectName}")
-	private String projectName;
+    @Value("${configuration.projectName}")
+    private String projectName;
 
-	@RequestMapping("/project-name")
-	public String projectName() {
-		return this.projectName;
-	}
+    @RequestMapping("/project-name")
+    public String projectName() {
+        return this.projectName;
+    }
 
 }
