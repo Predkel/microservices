@@ -11,6 +11,15 @@ eureka:
     serviceUrl:
       defaultZone: ${vcap.services.eureka-service.credentials.uri:http://127.0.0.1:8761}/eureka/
 
+#security:
+#  oauth2:
+#    client:
+#      clientId: contact-service
+#      clientSecret: contact-pass
+#      accessTokenUri: http://auth-service:5000/auth/oauth/token
+#      grant-type: client_credentials
+#      scope: server
+
 ---
 #spring:
 #  profiles: cloud
