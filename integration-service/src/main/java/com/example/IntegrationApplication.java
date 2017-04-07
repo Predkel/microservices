@@ -1,6 +1,5 @@
 package com.example;
 
-import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
 import org.springframework.cloud.client.circuitbreaker.EnableCircuitBreaker;
@@ -8,27 +7,23 @@ import org.springframework.cloud.netflix.eureka.EnableEurekaClient;
 import org.springframework.cloud.netflix.feign.EnableFeignClients;
 import org.springframework.cloud.netflix.zuul.EnableZuulProxy;
 import org.springframework.context.annotation.Bean;
-import org.springframework.core.env.Environment;
+import reactor.Environment;
 
 @SpringBootApplication
 @EnableEurekaClient
 @EnableFeignClients
 @EnableCircuitBreaker //http://localhost:{PORT}/book/{id}
-@EnableZuulProxy //http://localhost:{PORT}/contact-service/contacts/
-public class CircuitBreakerApplication {
+@EnableZuulProxy //http://localhost:{PORT}/contact-service/contact/
+                //http://localhost:{PORT}/profile-service/profiles/
+public class IntegrationApplication {
 
     @Bean
-    public reactor.Environment env() {
-        return reactor.Environment.initializeIfEmpty();
-    }
-
-    @Autowired
-    void setEnvironment(Environment e) {
-        System.out.println(e.getProperty("configuration.projectName"));
+    public Environment env(){
+        return Environment.initializeIfEmpty();
     }
 
     public static void main(String[] args) {
-        SpringApplication.run(CircuitBreakerApplication.class, args);
+        SpringApplication.run(IntegrationApplication.class, args);
     }
 
 }

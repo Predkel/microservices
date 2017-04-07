@@ -8,16 +8,14 @@ import org.springframework.web.bind.annotation.*;
 import java.util.List;
 
 @RestController
-@RequestMapping("/contacts")
+@RequestMapping("/contact")
 public class ContactRestController {
 
     private final ContactRepository contactRepository;
 
     @Autowired
-    public ContactRestController(ContactRepository contactRepository//, AuthServiceClient authClient
-    ) {
+    public ContactRestController(ContactRepository contactRepository) {
         this.contactRepository = contactRepository;
-        //this.authClient = authClient;
     }
 
 
@@ -40,13 +38,5 @@ public class ContactRestController {
     public Contact createContact(@RequestBody Contact contact) {
         return this.contactRepository.save(new Contact(contact.getFirstName(), contact.getEmail()));
     }
-
-//    private final AuthServiceClient authClient;
-//
-//    @RequestMapping(path = "/", method = RequestMethod.POST)
-//    public HttpStatus createNewAccount(@RequestBody User user) {
-//        authClient.createUser(user);
-//        return HttpStatus.OK;
-//    }
 
 }

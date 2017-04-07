@@ -2,32 +2,18 @@ package com.example;
 
 import com.example.model.Contact;
 import com.example.repository.ContactRepository;
-import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.CommandLineRunner;
 import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
 import org.springframework.cloud.netflix.eureka.EnableEurekaClient;
-import org.springframework.cloud.netflix.feign.EnableFeignClients;
 import org.springframework.context.annotation.Bean;
-import org.springframework.core.env.Environment;
 
 import java.util.Arrays;
 
-//import org.springframework.security.oauth2.config.annotation.web.configuration.EnableOAuth2Client;
-
 @SpringBootApplication
 @EnableEurekaClient
-@EnableFeignClients
 //@EnableOAuth2Client
-public class ContactServiceApplication {
-
-//    @Autowired
-//    AuthServiceClient client;
-
-    @Autowired
-    void setEnvironment(Environment e) {
-        System.out.println(e.getProperty("configuration.projectName"));
-    }
+public class ContactApplication {
 
     @Bean
     public CommandLineRunner init(ContactRepository contactRepository) {
@@ -43,7 +29,7 @@ public class ContactServiceApplication {
     }
 
     public static void main(String[] args) {
-        SpringApplication.run(ContactServiceApplication.class, args);
+        SpringApplication.run(ContactApplication.class, args);
     }
 
 }
