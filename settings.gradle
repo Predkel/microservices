@@ -1,0 +1,6 @@
+include 'auth-service'
+include 'config-service'
+include 'eureka-service'
+include 'contact-service'
+include 'gateway-service'
+include 'profile-service'

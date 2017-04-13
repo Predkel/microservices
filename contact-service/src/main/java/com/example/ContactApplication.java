@@ -12,7 +12,6 @@ import java.util.Arrays;
 
 @SpringBootApplication
 @EnableEurekaClient
-//@EnableOAuth2Client
 public class ContactApplication {
 
     @Bean
