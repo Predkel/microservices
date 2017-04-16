@@ -8,10 +8,23 @@ zuul:
       path: /auth/**
       url: http://localhost:8889/auth/
       sensitive-headers:
-    resource:
-      path: /api/**
+    contact:
+      path: /contacts/**
       url: http://localhost:8886/
       sensitive-headers:
+    profile:
+      path: /profiles/**
+      url: http://localhost:8885/
+      sensitive-headers:
+
+#          contact:
+#            path: /contacts/**
+#            url: http://localhost:8886/
+#            sensitive-headers:
+#          profile:
+#            path: /profiles/**
+#            url: http://localhost:8885/
+#            sensitive-headers:
 
 security:
   user:

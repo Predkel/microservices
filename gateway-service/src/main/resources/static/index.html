@@ -50,6 +50,7 @@
     </div>
 
     <div class="container">
+        <h2>Reader</h2>
       <!-- Example row of columns -->
       <div class="row">
         <div class="col-md-4">
@@ -80,11 +81,17 @@
         <script src="js/main.js"></script>
     <script>
         $(function () {
-            function loadProperty(id) {
+            function loadPropertyReader(id) {
                 return function () {
-                    return $.getJSON('api/' + id);
+                    return $.getJSON('contacts/contact/' + id);
                 }
             }
+
+//            function loadPropertyWriter(id) {
+//                return function () {
+//                    return $.getJSON('profiles/profile/' + id);
+//                }
+//            }
 
             function sleep(seconds, promiseResult) {
                 return function () {
@@ -97,7 +104,7 @@
             }
 
             [1, 2, 3].reduce(function (pp, id) {
-                return pp.then(loadProperty(id))
+                return pp.then(loadPropertyReader(id))
                         .then(function success(data) {
                             $('#p' + id).html('<div class="alert alert-success" role="alert"><span class="glyphicon glyphicon-user" aria-hidden="true"></span> <strong>'+data.user+'</strong>: Loaded protected resource from microservice: <strong>' + data.resource+'</strong> </div>');
                             return data;

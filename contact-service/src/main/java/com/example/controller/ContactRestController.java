@@ -29,10 +29,10 @@ public class ContactRestController {
         return this.contactRepository.findOne(id);
     }
 
-    @RequestMapping(value = "/{firstName}", method = RequestMethod.GET)
-    public Contact getContact(@PathVariable String firstName) {
-        return this.contactRepository.findByFirstName(firstName);
-    }
+//    @RequestMapping(value = "/{firstName}", method = RequestMethod.GET)
+//    public Contact getContact(@PathVariable String firstName) {
+//        return this.contactRepository.findByFirstName(firstName);
+//    }
 
     @RequestMapping(method = RequestMethod.POST)
     public Contact createContact(@RequestBody Contact contact) {

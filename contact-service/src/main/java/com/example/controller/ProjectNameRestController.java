@@ -16,16 +16,6 @@ import java.util.UUID;
 @RefreshScope
 public class ProjectNameRestController {
 
-    @RequestMapping(value = "/{id}", method = RequestMethod.GET)
-    public Map readFoo(@PathVariable Integer id, Principal principal) {
-
-        HashMap<String, String> map = new HashMap<>(3);
-        map.put("id", id.toString());
-        map.put("resource", UUID.randomUUID().toString());
-        map.put("user", principal.getName());
-        return map;
-    }
-
     @Value("${configuration.projectName}")
     private String projectName;
 
