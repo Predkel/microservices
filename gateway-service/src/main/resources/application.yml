@@ -2,32 +2,45 @@ server:
   contextPath: /web-app
   port: 8887
 
+#zuul:
+#  routes:
+#    auth:
+#      path: /auth/**
+#      url: http://localhost:8889/auth/
+#      sensitive-headers:
+#    contact:
+#      path: /contacts/**
+#      url: http://localhost:8886/
+#      sensitive-headers:
+#    profile:
+#      path: /profiles/**
+#      url: http://localhost:8885/
+#      sensitive-headers:
+
 zuul:
   routes:
-    auth:
+    auth-service:
       path: /auth/**
       url: http://localhost:8889/auth/
       sensitive-headers:
-    contact:
+    contact-service:
       path: /contacts/**
-      url: http://localhost:8886/
       sensitive-headers:
-    profile:
+    profile-service:
       path: /profiles/**
-      url: http://localhost:8885/
       sensitive-headers:
 
 security:
-  user:
-    password: none
+#  user:
+#    password: none
   oauth2:
     client:
       accessTokenUri: http://localhost:8887/web-app/auth/oauth/token
       userAuthorizationUri: http://localhost:8887/web-app/auth/oauth/authorize
       clientId: web-app
-      preEstablishedRedirectUri: http://localhost:8887/web-app/login
-      registeredRedirectUri: http://localhost:8887/web-app/login
-      useCurrentUri: false
+#      preEstablishedRedirectUri: http://localhost:8887/web-app/login
+#      registeredRedirectUri: http://localhost:8887/web-app/login
+#      useCurrentUri: false
 
     resource:
       jwt:

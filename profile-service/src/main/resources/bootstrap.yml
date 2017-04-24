@@ -1,3 +1,8 @@
 spring:
   application:
     name: profile-service
+  cloud:
+    config:
+      fail-fast: true
+      retry:
+        max-attempts: 100

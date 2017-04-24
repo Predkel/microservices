@@ -7,6 +7,7 @@ import com.example.connection.ReactorIntegrationClient;
 import com.example.model.Contact;
 import com.example.model.Dto;
 import com.example.model.Profile;
+import org.springframework.security.access.prepost.PreAuthorize;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RestController;

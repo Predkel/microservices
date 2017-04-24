@@ -2,9 +2,9 @@ server:
   port: 8889
   contextPath: /auth
 
-security:
-  user:
-    password: password
+#security:
+#  user:
+#    password: password
 
 eureka:
   client:
