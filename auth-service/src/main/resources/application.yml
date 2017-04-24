@@ -1,10 +1,14 @@
 server:
   port: 8889
-  contextPath: /auth
+#  contextPath: /auth
 
 #security:
 #  user:
 #    password: password
+
+logging:
+  level:
+    org.springframework.security: DEBUG
 
 eureka:
   client:

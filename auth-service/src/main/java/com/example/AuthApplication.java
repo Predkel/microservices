@@ -25,102 +25,112 @@ import org.springframework.security.oauth2.provider.token.store.KeyStoreKeyFacto
 import org.springframework.web.servlet.config.annotation.ViewControllerRegistry;
 import org.springframework.web.servlet.config.annotation.WebMvcConfigurerAdapter;
 
+import javax.servlet.http.HttpServletResponse;
+
 @SpringBootApplication
-@EnableEurekaClient
-@EnableResourceServer
+//@EnableEurekaClient
+//@EnableResourceServer
 class AuthApplication extends WebMvcConfigurerAdapter {
 
-    @Override
-    public void addViewControllers(ViewControllerRegistry registry) {
-        registry.addViewController("/login").setViewName("login");
-    }
+//    @Override
+//    public void addViewControllers(ViewControllerRegistry registry) {
+//        registry.addViewController("/login").setViewName("login");
+//    }
 
 
-    @Configuration
-    @Order(-20)
-    static class WebSecurityConfig extends WebSecurityConfigurerAdapter {
-
-
-        @Override
-        @Bean
-        public AuthenticationManager authenticationManagerBean() throws Exception {
-            return super.authenticationManagerBean();
-        }
-
-        @Override
-        protected void configure(HttpSecurity http) throws Exception {
-
-            http
-                    .formLogin().loginPage("/login").permitAll()
-                    .and().httpBasic().and()
-                    .requestMatchers()
-                    //specify urls handled
-                    .antMatchers("/login", "/oauth/authorize", "/oauth/confirm_access")
-                    .antMatchers("/fonts/**", "/js/**", "/css/**")
-                    .and()
-                    .authorizeRequests()
-                    .antMatchers("/fonts/**", "/js/**", "/css/**").permitAll()
-                    .anyRequest().authenticated();
-
-        }
-
-        @Override
-        protected void configure(AuthenticationManagerBuilder auth) throws Exception {
-            auth.inMemoryAuthentication()
-                    .withUser("reader")
-                    .password("reader")
-                    .authorities("ROLE_READER")
-                    .and()
-                    .withUser("writer")
-                    .password("writer")
-                    .authorities("ROLE_READER", "ROLE_WRITER")
-                    .and()
-                    .withUser("guest")
-                    .password("guest")
-                    .authorities("ROLE_GUEST");
-        }
-    }
-
-    @Configuration
-    @EnableAuthorizationServer
-    static class OAuth2Configuration extends AuthorizationServerConfigurerAdapter {
-
-        @Autowired
-        @Qualifier("authenticationManagerBean")
-        AuthenticationManager authenticationManager;
-
-
-        @Override
-        public void configure(ClientDetailsServiceConfigurer clients) throws Exception {
-            clients.inMemory()
-                    .withClient("web-app")
-                    .scopes("ead")
-                    .autoApprove(true)
-                    .accessTokenValiditySeconds(10000)
-                    .refreshTokenValiditySeconds(10000)
-                    .authorizedGrantTypes("implicit", "refresh_token", "password", "authorization_code");
-        }
-
-        @Override
-        public void configure(AuthorizationServerEndpointsConfigurer endpoints) throws Exception {
-            endpoints.tokenStore(tokenStore()).tokenEnhancer(jwtTokenEnhancer()).authenticationManager(authenticationManager);
-        }
-
-
-        @Bean
-        TokenStore tokenStore() {
-            return new JwtTokenStore(jwtTokenEnhancer());
-        }
-
-        @Bean
-        protected JwtAccessTokenConverter jwtTokenEnhancer() {
-            KeyStoreKeyFactory keyStoreKeyFactory = new KeyStoreKeyFactory(
-                    new ClassPathResource("jwt.jks"), "mySecretKey".toCharArray());
-            JwtAccessTokenConverter converter = new JwtAccessTokenConverter();
-            converter.setKeyPair(keyStoreKeyFactory.getKeyPair("jwt"));
-            return converter;
-        }
-    }
+//    @Configuration
+//    @Order(-20)
+//    static class WebSecurityConfig extends WebSecurityConfigurerAdapter {
+//
+//
+//        @Override
+//        @Bean
+//        public AuthenticationManager authenticationManagerBean() throws Exception {
+//            return super.authenticationManagerBean();
+//        }
+//
+//        @Override
+//        protected void configure(HttpSecurity http) throws Exception {
+//
+////            http
+////                    .formLogin().loginPage("/login").permitAll()
+////                    .and().httpBasic().and()
+////                    .requestMatchers()
+////                    //specify urls handled
+////                    .antMatchers("/login", "/oauth/authorize", "/oauth/confirm_access")
+////                    .antMatchers("/fonts/**", "/js/**", "/css/**")
+////                    .and()
+////                    .authorizeRequests()
+////                    .antMatchers("/fonts/**", "/js/**", "/css/**").permitAll()
+////                    .anyRequest().authenticated();
+//            http
+//                    .csrf().disable()
+//                    .exceptionHandling()
+//                    .authenticationEntryPoint((request, response, authException) -> response.sendError(HttpServletResponse.SC_UNAUTHORIZED))
+//                    .and()
+//                    .authorizeRequests()
+//                    .antMatchers("/**").authenticated()
+//                    .and()
+//                    .httpBasic();
+//        }
+//
+//        @Override
+//        protected void configure(AuthenticationManagerBuilder auth) throws Exception {
+//            auth.inMemoryAuthentication()
+//                    .withUser("reader")
+//                    .password("reader")
+//                    .authorities("ROLE_READER")
+//                    .and()
+//                    .withUser("writer")
+//                    .password("writer")
+//                    .authorities("ROLE_READER", "ROLE_WRITER")
+//                    .and()
+//                    .withUser("guest")
+//                    .password("guest")
+//                    .authorities("ROLE_GUEST");
+//        }
+//    }
+//
+//    @Configuration
+//    @EnableAuthorizationServer
+//    static class OAuth2Configuration extends AuthorizationServerConfigurerAdapter {
+//
+//        @Autowired
+//        @Qualifier("authenticationManagerBean")
+//        AuthenticationManager authenticationManager;
+//
+//
+//        @Override
+//        public void configure(ClientDetailsServiceConfigurer clients) throws Exception {
+//            clients.inMemory()
+//                    .withClient("web-app")
+//                    .scopes("ead")
+//                    .autoApprove(true)
+//                    .accessTokenValiditySeconds(10000)
+//                    .refreshTokenValiditySeconds(10000)
+//                    .authorizedGrantTypes("implicit", "refresh_token", "password", "authorization_code");
+//        }
+//
+//        @Override
+//        public void configure(AuthorizationServerEndpointsConfigurer endpoints) throws Exception {
+//            endpoints.tokenStore(tokenStore()).tokenEnhancer(jwtTokenEnhancer()).authenticationManager(authenticationManager);
+//        }
+//
+//
+//        @Bean
+//        TokenStore tokenStore() {
+//            return new JwtTokenStore(jwtTokenEnhancer());
+//        }
+//
+//        @Bean
+//        protected JwtAccessTokenConverter jwtTokenEnhancer() {
+//            KeyStoreKeyFactory keyStoreKeyFactory = new KeyStoreKeyFactory(
+//                    new ClassPathResource("jwt.jks"), "mySecretKey".toCharArray());
+//            JwtAccessTokenConverter converter = new JwtAccessTokenConverter();
+//            converter.setKeyPair(keyStoreKeyFactory.getKeyPair("jwt"));
+//            return converter;
+//        }
+//    }
 
 
     public static void main(String[] args) {
