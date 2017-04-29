@@ -1,0 +1,40 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8"/>
+    <title>Login</title>
+</head>
+<body onload="document.f.username.focus();">
+
+<h1>Login</h1>
+
+<div th:if="${param.error != null}" style="color: red;">
+    Error: <span th:text="${session['SPRING_SECURITY_LAST_EXCEPTION'].message}"></span>
+</div>
+
+<div th:if="${param.logout != null}" style="color: green;">
+    You are successfully logged out!
+</div>
+
+<form th:action="@{/login}" name="f" method="post">
+    <fieldset>
+        <legend>With Username and Password:</legend>
+        <p>
+            <label for="username">Username</label>
+            <input type="text" id="username" name="username"/>
+        </p>
+        <p>
+            <label for="password">Password</label>
+            <input type="password" id="password" name="password"/>
+        </p>
+        <p>
+            <input name="submit" type="submit" value="Login"/>
+        </p>
+    </fieldset>
+    <fieldset>
+        <legend>With External OAuth2 Provider:</legend>
+        <p><a th:href="@{/login/google}">Login with Google</a></p>
+    </fieldset>
+</form>
+</body>
+</html>

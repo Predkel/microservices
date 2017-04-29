@@ -10,3 +10,15 @@ eureka:
   client:
     serviceUrl:
       defaultZone: ${vcap.services.eureka-service.credentials.uri:http://127.0.0.1:8761}/eureka/
+
+# External OAuth2 provider configuration - Google
+google:
+  client:
+    clientId: 459089619061-fhif29uubhhshv2d2ai5p2djr116p78f.apps.googleusercontent.com
+    clientSecret: ogq-_JiMBzusmf_r_PL4ZAah
+    scope: email,profile
+    accessTokenUri: https://accounts.google.com/o/oauth2/token
+    userAuthorizationUri: https://accounts.google.com/o/oauth2/auth
+    clientAuthenticationScheme: form
+  resource:
+    userInfoUri: https://www.googleapis.com/oauth2/v3/userinfo

@@ -119,7 +119,10 @@
 
                 </form>
 
-
+                <fieldset>
+                    <legend>With External OAuth2 Provider:</legend>
+                    <p><a href="/login/google">Login with Google</a></p>
+                </fieldset>
             </section>
         </div>
 

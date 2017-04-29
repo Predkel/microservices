@@ -28,7 +28,6 @@ security:
       preEstablishedRedirectUri: http://localhost:8887/web-app/login
       registeredRedirectUri: http://localhost:8887/web-app/login
       useCurrentUri: false
-
     resource:
       jwt:
         keyValue: |
